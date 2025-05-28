@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Medlevant - Customer Feedback Platform</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="logo">
+          <img src="logo.png" alt="Medlevant Logo" class="logo-img" />
+        </div>
+        <nav>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#rate">Rate Service</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+          </ul>
+          <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <section id="home" class="hero">
+      <div class="container">
+        <h1>Medlevant Service Evaluation</h1>
+        <p>Help us improve our services by sharing your feedback</p>
+        <a href="#rate" class="btn">Rate Now</a>
+      </div>
+    </section>
+
+    <section id="rate" class="rating-section">
+      <div class="container">
+        <h2><i class="fas fa-star"></i> Service Rating</h2>
+
+        <form
+          id="rating-form"
+          action="https://formsubmit.co/abdelsalammohamed@medlevant.com"
+          method="POST"
+        >
+          <!-- FormSubmit Configuration -->
+          <input
+            type="hidden"
+            name="_subject"
+            value="New Medlevant Feedback Submission"
+          />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_next" value="thank-you.html" />
+          <input
+            type="hidden"
+            name="_autoresponse"
+            value="Thank you for your feedback to Medlevant! We appreciate your time."
+          />
+
+          <!-- Hidden fields to store star ratings -->
+          <input
+            type="hidden"
+            id="quality-rating"
+            name="Service Quality Rating"
+            value=""
+          />
+          <input
+            type="hidden"
+            id="response-rating"
+            name="Response Speed Rating"
+            value=""
+          />
+          <input
+            type="hidden"
+            id="complaints-rating"
+            name="Complaint Handling Rating"
+            value=""
+          />
+
+          <div class="form-group">
+            <label for="customer-name">Your Name (optional)</label>
+            <input
+              type="text"
+              id="customer-name"
+              name="Customer Name"
+              placeholder="Enter your name"
+            />
+          </div>
+
+          <div class="rating-category">
+            <h3>Service Quality</h3>
+            <div class="stars" data-category="quality">
+              <i class="far fa-star" data-rating="1"></i>
+              <i class="far fa-star" data-rating="2"></i>
+              <i class="far fa-star" data-rating="3"></i>
+              <i class="far fa-star" data-rating="4"></i>
+              <i class="far fa-star" data-rating="5"></i>
+            </div>
+          </div>
+
+          <div class="rating-category">
+            <h3>Response Speed</h3>
+            <div class="stars" data-category="response">
+              <i class="far fa-star" data-rating="1"></i>
+              <i class="far fa-star" data-rating="2"></i>
+              <i class="far fa-star" data-rating="3"></i>
+              <i class="far fa-star" data-rating="4"></i>
+              <i class="far fa-star" data-rating="5"></i>
+            </div>
+          </div>
+
+          <div class="rating-category">
+            <h3>Complaint Handling</h3>
+            <div class="stars" data-category="complaints">
+              <i class="far fa-star" data-rating="1"></i>
+              <i class="far fa-star" data-rating="2"></i>
+              <i class="far fa-star" data-rating="3"></i>
+              <i class="far fa-star" data-rating="4"></i>
+              <i class="far fa-star" data-rating="5"></i>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="customer-feedback">Your Feedback or Suggestions</label>
+            <textarea
+              id="customer-feedback"
+              name="Detailed Feedback"
+              placeholder="Write your feedback here..."
+              required
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Would you recommend our service to others?</label>
+            <div class="recommend-options">
+              <label>
+                <input type="radio" name="Recommendation" value="Yes" checked />
+                Yes
+              </label>
+              <label>
+                <input type="radio" name="Recommendation" value="No" />
+                No
+              </label>
+            </div>
+          </div>
+
+          <button type="submit" class="btn">Submit Rating</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Rest of your HTML remains unchanged -->
+    <section id="reviews" class="reviews-section">
+      <div class="container">
+        <h2><i class="fas fa-comments"></i> Recent Reviews</h2>
+
+        <div class="overall-rating">
+          <h3>Overall Rating</h3>
+          <div class="average-rating">
+            <div class="rating-circle">
+              <span id="overall-score">0.0</span>
+            </div>
+            <div class="stars-display">
+              <i class="far fa-star"></i>
+              <i class="far fa-star"></i>
+              <i class="far fa-star"></i>
+              <i class="far fa-star"></i>
+              <i class="far fa-star"></i>
+            </div>
+            <p>Based on <span id="total-ratings">0</span> reviews</p>
+          </div>
+        </div>
+
+        <div class="reviews-container" id="reviews-container">
+          <p class="no-reviews">No reviews yet. Be the first to rate!</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <p>All rights reserved &copy; Medlevant <span id="year"></span></p>
+      </div>
+    </footer>
+
+    <script>
+      // Enhanced Star Rating Functionality
+      document.addEventListener("DOMContentLoaded", function () {
+        // Set current year in footer
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Star rating functionality
+        document.querySelectorAll(".stars i").forEach((star) => {
+          star.addEventListener("click", function () {
+            const category = this.parentElement.dataset.category;
+            const rating = parseInt(this.dataset.rating);
+            const starsContainer = this.parentElement;
+
+            // Update visual stars
+            starsContainer.querySelectorAll("i").forEach((star, index) => {
+              star.classList.toggle("fas", index < rating);
+              star.classList.toggle("far", index >= rating);
+            });
+
+            // Update hidden input value
+            document.getElementById(`${category}-rating`).value = `${rating}/5`;
+          });
+        });
+
+        // Form submission handler
+        document
+          .getElementById("rating-form")
+          .addEventListener("submit", function (e) {
+            // Verify at least one rating category is selected
+            const ratingValues = [
+              document.getElementById("quality-rating").value,
+              document.getElementById("response-rating").value,
+              document.getElementById("complaints-rating").value,
+            ];
+
+            if (ratingValues.every((val) => !val)) {
+              e.preventDefault();
+              alert("Please rate at least one category before submitting");
+            }
+          });
+      });
+    </script>
+  </body>
+</html>
